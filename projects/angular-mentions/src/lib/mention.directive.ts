@@ -4,8 +4,7 @@ import {
   ElementRef,
   TemplateRef,
   ViewContainerRef,
-  HostListener,
-  HostBinding
+  HostListener
 } from '@angular/core';
 import {
   EventEmitter,
@@ -38,7 +37,7 @@ const KEY_BUFFERED = 229;
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: '[mention], [mentionConfig]',
+  selector: '[mention], [mentionConfig]'
 })
 export class MentionDirective implements OnChanges {
   // stores the items passed to the mentions directive and used to populate the root items in mentionConfig
@@ -248,6 +247,7 @@ export class MentionDirective implements OnChanges {
 
   public updateConfig() {
     const config = this.mentionConfig;
+    console.log(config, 'updateConfig');
     this.triggerChars = {};
     // use items from directive if they have been set
     if (this.mentionItems) {
@@ -265,17 +265,31 @@ export class MentionDirective implements OnChanges {
     // defaults
     const defaults = Object.assign({}, this.DEFAULT_CONFIG);
     config = Object.assign(defaults, config);
+    console.log(config, 'config');
     // items
     let items = config.items;
+    const data = config.data;
     if (items && items.length > 0) {
       // convert strings to objects
-      if (typeof items[0] == 'string') {
+      if (typeof items[0] === 'string') {
         items = items.map(label => {
           const object = {};
           object[config.labelKey] = label;
+          object['data'] = config.data;
           return object;
         });
       }
+
+      /* items = data.map(d => {
+        const object = {};
+        object['data'] = d;
+        return object;
+      }) */
+
+      for(let i = 0; i < items.length; i++) {
+        items[i]['data'] = data[i];
+      }
+
       if (config.labelKey) {
         // remove items without an labelKey (as it's required to filter the list)
         items = items.filter(e => e[config.labelKey]);
@@ -286,6 +300,7 @@ export class MentionDirective implements OnChanges {
         }
       }
     }
+    console.log(items, 'directive');
     config.items = items;
 
     // add the config

@@ -76,8 +76,6 @@ export class MentionListComponent implements OnInit {
     if (!this.itemTemplate) {
       this.itemTemplate = this.defaultItemTemplate;
     }
-    console.log(this.itemTemplate);
-    console.log(this.items);
   }
 
   // lots of confusion here between relative coordinates and containers
