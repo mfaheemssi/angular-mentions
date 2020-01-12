@@ -1,36 +1,31 @@
 import { Component } from '@angular/core';
 import { COMMON_NAMES } from '../common-names';
-import { MentionConfig } from 'angular-mentions';
+import { MentionConfig } from '../../../../angular-mentions/src/lib/mention-config';
 
 @Component({
   selector: 'app-demo-config',
   templateUrl: './demo-config.component.html'
 })
 export class DemoConfigComponent {
-
   complexItems = [
     {
-      "value" : "user1",
-      "email": "user1@domain.com",
-      "name": "User 1"
+      value: 'user1',
+      email: 'user1@domain.com',
+      name: 'User 1'
     },
     {
-      "value" : "user2",
-      "email": "user2@domain.com",
-      "name": "User 2"
+      value: 'user2',
+      email: 'user2@domain.com',
+      name: 'User 2'
     },
     {
-      "value" : "user3",
-      "email": "user3@domain.com",
-      "name": "User 3"
+      value: 'user3',
+      email: 'user3@domain.com',
+      name: 'User 3'
     }
   ];
 
-  format(item:any) {
-    return item['value'].toUpperCase();
-  }
-
-  mentionConfig:MentionConfig = {
+  mentionConfig: MentionConfig = {
     mentions: [
       {
         items: this.complexItems,
@@ -44,13 +39,15 @@ export class DemoConfigComponent {
       }
     ]
   };
-
+  format(item: any) {
+    return item.value.toUpperCase();
+  }
   addUser() {
-    let next = this.complexItems.length+1;
+    let next = this.complexItems.length + 1;
     this.complexItems.push({
-      "value" : "user"+next,
-      "email": "user"+next+"@domain.com",
-      "name": "User "+next
+      value: 'user' + next,
+      email: 'user' + next + '@domain.com',
+      name: 'User ' + next
     });
     this.mentionConfig = Object.assign({}, this.mentionConfig);
   }
