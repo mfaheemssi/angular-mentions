@@ -121,7 +121,7 @@ export class MentionDirective implements OnChanges {
       pos = this.startNode.length;
       setCaretPosition(this.startNode, pos, this.iframe);
     }
-    // console.log("keyHandler", this.startPos, pos, val, charPressed, event);
+    //
 
     const config = this.triggerChars[charPressed];
     if (config) {
@@ -239,7 +239,7 @@ export class MentionDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log('config change', changes);
+    //
     if (changes.mention || changes.mentionConfig) {
       this.updateConfig();
     }
@@ -247,7 +247,7 @@ export class MentionDirective implements OnChanges {
 
   public updateConfig() {
     const config = this.mentionConfig;
-    console.log(config, 'updateConfig');
+
     this.triggerChars = {};
     // use items from directive if they have been set
     if (this.mentionItems) {
@@ -265,7 +265,7 @@ export class MentionDirective implements OnChanges {
     // defaults
     const defaults = Object.assign({}, this.DEFAULT_CONFIG);
     config = Object.assign(defaults, config);
-    console.log(config, 'config');
+
     // items
     let items = config.items;
     const data = config.data;
@@ -300,7 +300,7 @@ export class MentionDirective implements OnChanges {
         }
       }
     }
-    console.log(items, 'directive');
+
     config.items = items;
 
     // add the config
