@@ -2,14 +2,16 @@
 
 Simple Angular mentions inspired by [Ment.io](https://github.com/jeff-collins/ment.io).
 
-[Click here for a Demo](http://dmacfarlane.github.io/angular-mentions/)
+Special thanks to [angular-mentions](https://github.com/dmacfarlane/angular-mentions).
+
+[Click here for a Demo](http://isfandkhan.github.io/angular-mentions/)
 
 Provides auto-complete suggestions for @mentions in text input fields, text areas,
 and content editable fields.
 
 To install and start the demo application:
 
-    git clone https://github.com/dmacfarlane/angular-mentions.git
+    git clone https://github.com/isfandkhan/angular-mentions.git
     cd angular-mentions
     npm install
     ng serve
@@ -18,12 +20,12 @@ To install and start the demo application:
 
 Add the package as a dependency to your project using:
 
-    npm install angular-mentions
+npm i @angular2plus/angular-mentions
 
 Add the module to your app.module imports:
 
 ```typescript
-import { MentionModule } from 'angular-mentions';
+import { MentionModule } from '@angular2plus/angular-mentions';
 ...
 
 @NgModule({
@@ -48,18 +50,19 @@ items: string[] = ["Noah", "Liam", "Mason", "Jacob", ...
 
 The following optional configuration items can be used.
 
-| Option        | Default  | Description |
-| ---           | ---      | ---         |
-| items         |          | An array of strings or objects to suggest. |
-| triggerChar   | @        | The character that will trigger the menu behavior. |
-| labelKey      | label    | The field to be used as the item label (when the items are objects). |
-| disableSort   | false    | Disable sorting of suggested items. |
-| disableSearch | false    | Disable internal filtering (only useful if async search is used). |
-| dropUp        | false    | Show the menu above the cursor instead of below. |
-| maxItems      | ∞        | Limit the number of items shown in the text. The default is no limit. |
-| mentionSelect |          | A function to format the selected item before inserting the text. |
-| allowSpace    | false    | Allow spaces while mentioning. |
-| returnTrigger | false    | Include the trigger char in the searchTerm event. |
+| Option              | Default  | Description
+|                     |          |
+| items               |          | An array of strings or objects to suggest.
+| triggerChar         | @        | The character that will trigger the menu behavior.
+| labelKey            | label    | The field to be used as the item label (when the items are objects).
+| disableSort         | false    | Disable sorting of suggested items.
+| disableSearch       | false    | Disable internal filtering (only useful if async search is used).
+| dropUp              | false    | Show the menu above the cursor instead of below.
+| maxItems            | ∞        | Limit the number of items shown in the text. The default is no limit.
+| mentionSelect       |          | A function to format the selected item before inserting the text.
+| allowSpace          | false    | Allow spaces while mentioning.
+| returnTrigger       | false    | Include the trigger char in the searchTerm event.
+| mentionListTemplate | null     | Include the trigger char in the searchTerm event.
 
 For Example: 
 
@@ -71,11 +74,11 @@ For Example:
 
 The following output events can be used.
 
-| Output        | Description |
-| ---           | ---         |
-| `@Output() serchTerm EventEmitter<string>` | Event that is emitted whenever the search term changes. Can be used to trigger async search.
-| `@Output() opened EventEmitter<void>`  | Event that is emitted when the mentions panel is opened.
-| `@Output() closed EventEmitter<void>`  | Event that is emitted when the mentions panel is closed.
+| Output                                      | Description
+|                                             |
+| `@Output() searchTerm EventEmitter<string>` | Event that is emitted whenever the search term changes. Can be used to trigger async search.
+| `@Output() opened EventEmitter<void>`       | Event that is emitted when the mentions panel is opened.
+| `@Output() closed EventEmitter<void>`       | Event that is emitted when the mentions panel is closed.
 
 ### Alternative Usage
 
@@ -97,7 +100,7 @@ let mentionConfig = {
 
 In this way, multiple config objects can be used:
 
-```javascript
+```typescript
 let mentionConfig = {
     mentions: [
         {
@@ -113,4 +116,35 @@ let mentionConfig = {
 ```
 This allows different lists and trigger characters to be configured.
 
-Note that becuase objects are mutable, changes to the items within the config will not be picked up unless a new mentionConfig object is created.
+Note that because objects are mutable, changes to the items within the config will not be picked up unless a new mentionConfig object is created.
+
+### CUSTOM Template
+
+Custom HTML can also be injected, bypassing the default HTML template provided by @angular2plus/angular-mentions.
+
+```typescript
+let mentionConfig = {
+    items: [ "Noah", "Liam", "Mason", "Jacob", ...],
+    data: [
+      { imgUrl: 'Some Image URL' },
+      { imgUrl: 'Some Image URL' },
+      { imgUrl: 'Some Image URL' },
+      ...
+    ],
+    triggerChar: "@",
+    ...
+}
+```
+
+```html
+
+<ng-template #mentionList let-item="item">
+  
+  <img [src]="item.data.imgUrl">
+  {{ item.label }}
+  
+</ng-template>
+
+<input type="text" [mentionListTemplate]="mentionList" [mentionConfig]="mentionConfig">
+
+```

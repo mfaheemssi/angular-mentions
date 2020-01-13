@@ -1,17 +1,20 @@
 {
   "name": "angular-mentions",
-  "version": "1.1.3",
+  "version": "1.3.0",
   "description": "Angular mentions for text fields.",
   "keywords": [
     "angular",
     "mention",
-    "autocomplete"
+    "autocomplete",
+    "mentions",
+    "tagging",
+    "tags"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmacfarlane/angular-mentions.git"
+    "url": "https://github.com/isfandkhan/angular-mentions.git"
   },
-  "author": "Dan MacFarlane",
+  "author": "Isfand Yar Khan",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=7.2.0",

@@ -275,19 +275,14 @@ export class MentionDirective implements OnChanges {
         items = items.map(label => {
           const object = {};
           object[config.labelKey] = label;
-          object['data'] = config.data;
           return object;
         });
       }
 
-      /* items = data.map(d => {
-        const object = {};
-        object['data'] = d;
-        return object;
-      }) */
-
-      for(let i = 0; i < items.length; i++) {
-        items[i]['data'] = data[i];
+      if (data) {
+        for (let i = 0; i < items.length; i++) {
+          items[i].data = data[i];
+        }
       }
 
       if (config.labelKey) {

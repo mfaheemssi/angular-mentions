@@ -11,8 +11,9 @@
 
 
 <ng-template #m let-item="item">
-  {{item.label}}
+
   <img [src]="item.data.img" alt="" height="40" width="40">
+  {{item.label}}
 </ng-template>
 <ng-container *ngIf="!test">
   <h3>Minimal</h3>

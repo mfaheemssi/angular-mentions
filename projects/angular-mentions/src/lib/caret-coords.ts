@@ -10,10 +10,10 @@
   var properties = [
     'direction',  // RTL support
     'boxSizing',
-    'width',  // on Chrome and IE, exclude the scrollbar, so the mirror div wraps exactly as the textarea does
+    'width',  // on Chrome and IE, exclude the scroll-bar, so the mirror div wraps exactly as the textarea does
     'height',
     'overflowX',
-    'overflowY',  // copy the scrollbar for IE
+    'overflowY',  // copy the scroll-bar for IE
 
     'borderTopWidth',
     'borderRightWidth',
