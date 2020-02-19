@@ -17,20 +17,6 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "angular-mentions": [
-        "dist/angular-mentions"
-      ],
-      "angular-mentions/*": [
-        "dist/angular-mentions/*"
-      ],
-      "mention": [
-        "dist/mention"
-      ],
-      "mention/*": [
-        "dist/mention/*"
-      ]
-    }
+    ]
   }
 }
